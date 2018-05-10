@@ -4,16 +4,11 @@
 }
 
 body {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 20px;
     font-family: 'IBM Plex Mono', monospace;
     background-color: black;
     color: white;
-}
-
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 /* Hide/rearrange for smaller screens */
@@ -22,4 +17,20 @@ body {
     .carousel-caption {
         display: none;
     }
+}
+
+#rowA {
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+}
+
+#colA {
+    display:flex;
+    flex-direction: column;
+}
+
+#colB {
+    display:flex;
+    flex-direction: column;
 }

@@ -5,7 +5,6 @@
     var streaming = false;
     var video = null;
     var canvas = null;
-    var photo = null;
     var startbutton = null;
 
     function startup() {
@@ -63,8 +62,7 @@
         context.fillStyle = "#AAA";
         context.fillRect(0, 0, canvas.width, canvas.height);
 
-        var data = canvas.toDataURL('image/png');
-        photo.setAttribute('src', data);
+        var data = canvas.toDataURL('image/jpg');
     }
 
     function takepicture() {
@@ -73,8 +71,7 @@
             canvas.width = width;
             canvas.height = height;
             context.drawImage(video, 0, 0, width, height);
-            var data = canvas.toDataURL('image/png');
-            photo.setAttribute('src', data);
+            var data = canvas.toDataURL('image/jpg');
         } else {
             clearphoto();
         }
