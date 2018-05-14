@@ -5,7 +5,7 @@
     var streaming = false;
     var video = null;
     var canvas = null;
-    var startbutton = null;
+    var startbutton = null;   
 
     function startup() {
         video = document.getElementById('video');
@@ -62,7 +62,7 @@
         context.fillStyle = "#AAA";
         context.fillRect(0, 0, canvas.width, canvas.height);
 
-        var data = canvas.toDataURL('image/jpg');
+        var data = canvas.toDataURL('image/png');
     }
 
     function takepicture() {
@@ -71,11 +71,23 @@
             canvas.width = width;
             canvas.height = height;
             context.drawImage(video, 0, 0, width, height);
-            var data = canvas.toDataURL('image/jpg');
+            var uri = canvas.toDataURL("image/png");
+            console.log(uri);
+            canvas.src = uri;
+            var data = canvas.toDataURL("image/png");
         } else {
             clearphoto();
         }
     }
 
-    window.addEventListener('load', startup, false);
-})();
+    function convertCanvasToImg(canvas) {
+        var image = new Image();
+        image.src = canvas.toDataURL("image/png");
+        return image;
+    }
+
+
+
+
+ window.addEventListener('load', startup, false);
+    }) ();
