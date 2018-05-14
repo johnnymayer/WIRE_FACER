@@ -1,6 +1,4 @@
-﻿
-
-(function () {
+﻿(function () {
 
     var width = 640;
     var height = 480;
@@ -61,9 +59,8 @@
 
     function clearphoto() {
         var context = canvas.getContext('2d');
-        context.fillStyle = "#AAA";
+        context.fillStyle = "#000";
         context.fillRect(0, 0, canvas.width, canvas.height);
-
         var data = canvas.toDataURL('image/png');
     }
 
@@ -78,8 +75,6 @@
 
             img.src = ctx.toDataURL();
 
-            toWireize = img.src;
-
             var img_b64 = canvas.toDataURL('image/png');
             var png = img_b64.split(',')[1];
 
@@ -91,18 +86,13 @@
                 v = atob(v);
                 var good_b64 = btoa(decodeURIComponent(escape(v)));
                 document.getElementById("canvas").src = "data:image/png;base64," + good_b64;
+                console.log(good_b64);
+               
             };
-            console.log(the_file);
             fr.readAsDataURL(the_file);
         } else {
             clearphoto();
         }
-    }
-
-    function convertCanvasToImg(canvas) {
-        var image = new Image();
-        image.src = canvas.toDataURL("image/png");
-        return image;
     }
 
  window.addEventListener('load', startup, false);
