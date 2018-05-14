@@ -1,4 +1,6 @@
-﻿(function () {
+﻿
+
+(function () {
 
     var width = 640;
     var height = 480;
@@ -66,15 +68,32 @@
     }
 
     function takepicture() {
+        var ctx = document.getElementById('canvas');
         var context = canvas.getContext('2d');
         if (width && height) {
             canvas.width = width;
             canvas.height = height;
             context.drawImage(video, 0, 0, width, height);
-            var uri = canvas.toDataURL("image/png");
-            console.log(uri);
-            canvas.src = uri;
-            var data = canvas.toDataURL("image/png");
+            var img = new Image();
+
+            img.src = ctx.toDataURL();
+
+            toWireize = img.src;
+
+            var img_b64 = canvas.toDataURL('image/png');
+            var png = img_b64.split(',')[1];
+
+            var the_file = new Blob([window.atob(png)], { type: 'image/png', encoding: 'utf-8' });
+
+            var fr = new FileReader();
+            fr.onload = function (oFREvent) {
+                var v = oFREvent.target.result.split(',')[1];
+                v = atob(v);
+                var good_b64 = btoa(decodeURIComponent(escape(v)));
+                document.getElementById("canvas").src = "data:image/png;base64," + good_b64;
+            };
+            console.log(the_file);
+            fr.readAsDataURL(the_file);
         } else {
             clearphoto();
         }
@@ -85,9 +104,6 @@
         image.src = canvas.toDataURL("image/png");
         return image;
     }
-
-
-
 
  window.addEventListener('load', startup, false);
     }) ();
